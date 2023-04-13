@@ -1,0 +1,19 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: files-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://eureka-service-alb-1377969908.us-east-1.elb.amazonaws.com/eureka}
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
