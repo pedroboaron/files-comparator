@@ -1,28 +1,19 @@
 server:
-  port: 0
+  port: 8082
 spring:
   application:
-    name: auth-service
-  datasource:
-    url: jdbc:postgresql://auth-service.cn0tlrtsmlxe.us-east-1.rds.amazonaws.com:5432/auth_service
-    username: auth_service
-    password: WsScXwfbbTL78xvT13xWs2Wtw7MrU78yLtkS
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    name: files-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: ${EUREKA_URI:https://bqujpfmacu.us-east-1.awsapprunner.com/eureka}
+      defaultZone: ${EUREKA_URI:http://eureka-service-alb-1377969908.us-east-1.elb.amazonaws.com/eureka}
   instance:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

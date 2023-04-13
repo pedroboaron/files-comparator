@@ -1,24 +1,15 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   profiles:
     default: '@activatedProperties@'
   application:
-    name: auth-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/auth-service
-    username: auth-service
-    password: auth-service
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    name: files-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 eureka:
   client:
     serviceUrl:
@@ -26,3 +17,8 @@ eureka:
   instance:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+graphMicrosoft:
+  host: https://graph.microsoft.com
+  tenant: v1.0/users/53b3f9ef-d92b-4ddb-b051-24e5acad1037
+  service:
+    name: MicrosoftGraph
