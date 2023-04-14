@@ -13,7 +13,7 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://eureka-service-alb-1377969908.us-east-1.elb.amazonaws.com/eureka}
+      defaultZone: ${EUREKA_URI:https://eureka.pollacontadores.com.br/eureka}
   instance:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
