@@ -1,0 +1,22 @@
+version: 0.0
+os: linux 
+files:
+  - source: /
+    destination: /home/ubuntu/pipeline
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: root
+# Durante o evento de ciclo de vida de implantação AfterInstall, execute os comandos
+# no script especificado em "local".
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+# Durante o evento de ciclo de vida de implantação do ApplicationInstall, execute os comandos
+# no script especificado em "local".
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 300
+      runas: root
