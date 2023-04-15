@@ -17,8 +17,7 @@ eureka:
   instance:
     preferIpAddress: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-graphMicrosoft:
-  host: https://graph.microsoft.com
-  tenant: v1.0/users/53b3f9ef-d92b-4ddb-b051-24e5acad1037
+cadastroEmpresa:
+  path: api/v1
   service:
-    name: MicrosoftGraph
+    name: CADASTRO-SERVICE
