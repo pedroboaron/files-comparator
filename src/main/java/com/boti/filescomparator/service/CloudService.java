@@ -143,14 +143,20 @@ public class CloudService {
 
     private ItemComparacao validaValor(String pgdas, String das, String relatorio){
         ItemComparacao itemComparacao = new ItemComparacao("Valor");
+        itemComparacao.setDesc("teste descrição");
+        itemComparacao.setStatusAprovado(true);
         return itemComparacao;
     }
     private ItemComparacao validaPeriodo(String pgdas, String das, String relatorio){
         ItemComparacao itemComparacao = new ItemComparacao("Periodo");
+        itemComparacao.setDesc("teste descrição");
+        itemComparacao.setStatusAprovado(true);
         return itemComparacao;
     }
     private ItemComparacao validaCnpj(String pgdas, String das, String relatorio){
         ItemComparacao itemComparacao = new ItemComparacao("Cnpj");
+        itemComparacao.setDesc("teste descrição");
+        itemComparacao.setStatusAprovado(false);
         return itemComparacao;
     }
     private String getPeridoApuracaoDas(String text) {
@@ -268,14 +274,14 @@ public class CloudService {
         String fileName = Arrays.stream(content).filter(c -> c.startsWith("filename=")).findFirst().orElse("semNome");
         fileName = fileName.substring(10, fileName.length() - 1);
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(".").getFile() + "/" + fileName);
+        File file = File.createTempFile(fileName,".pdf");
         saveFile(response.body().byteStream(), file);
         //lendo o arquivo
         PDDocument document = PDDocument.load(file);
         PDFTextStripper pdfStripper = new PDFTextStripper();
         String text = pdfStripper.getText(document);
         document.close();
+        file.deleteOnExit();
         return text;
     }
 
