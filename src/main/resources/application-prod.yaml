@@ -4,6 +4,9 @@ spring:
   application:
     name: files-service
 management:
+  endpoint:
+    loggers:
+      enabled: true
   endpoints:
     web:
       exposure:
