@@ -1,3 +1,9 @@
+logging:
+  file:
+    name: ./logs/log-file.log
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
 server:
   port: 8082
 spring:
